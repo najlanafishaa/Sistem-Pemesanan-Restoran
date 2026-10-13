@@ -1,0 +1,73 @@
+/* CSS Sederhana Resto Nusantara */
+:root {
+  --color-forest:  #19352B;
+  --color-primary: #557A59;
+  --color-bg:      #F7F6F0;
+  --color-border:  #E3E8DF;
+}
+
+/* Kunci layar pas (tidak geser samping) */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+body { background: var(--color-bg); font-family: 'Segoe UI', sans-serif; font-size: 0.93rem; }
+
+/* Layout utama */
+.wrapper { display: flex; width: 100%; min-height: 100vh; }
+#sidebar {
+  width: 220px; min-width: 220px;
+  background: var(--color-forest); color: #fff;
+  position: fixed; top: 0; left: 0; height: 100vh;
+  display: flex; flex-direction: column; flex-shrink: 0;
+  z-index: 100; overflow-y: auto;
+}
+#content { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; overflow-x: hidden; margin-left: 220px; }
+.main-container { padding: 1.25rem; flex-grow: 1; }
+
+/* Sidebar */
+.sidebar-brand { padding: 1.1rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+#sidebar ul.components { padding: 0.5rem 0; list-style: none; margin: 0; }
+#sidebar ul li a {
+  padding: 0.7rem 1.2rem; display: block;
+  color: #cfd8dc; text-decoration: none; font-size: 0.92rem;
+}
+#sidebar ul li a:hover, #sidebar ul li.active > a {
+  color: #fff; background: rgba(255,255,255,0.1); border-left: 4px solid var(--color-primary);
+}
+
+/* Navbar & Footer */
+.top-navbar { background: #fff; border-bottom: 1px solid var(--color-border); padding: 0.75rem 1.25rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 99; }
+footer { background: #fff; border-top: 1px solid var(--color-border); padding: 0.75rem; text-align: center; color: #667085; font-size: 0.85rem; }
+
+/* Komponen Card, Tabel & Tombol */
+.card { background: #fff; border: 1px solid var(--color-border); border-radius: 6px; }
+.card-header { background: #fff; border-bottom: 1px solid var(--color-border); padding: 0.75rem 1rem; }
+.card-stat { border-left: 4px solid var(--color-primary) !important; }
+.table thead th { background: #F0F4EB; color: #667085; font-size: 0.82rem; border-bottom: 1px solid var(--color-border); padding: 0.6rem 0.8rem; }
+.table td { padding: 0.6rem 0.8rem; vertical-align: middle; border-bottom: 1px solid var(--color-border); }
+
+.btn-primary { background: var(--color-primary) !important; border-color: var(--color-primary) !important; color: #fff !important; }
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active { background: #3e5e42 !important; border-color: #3e5e42 !important; color: #fff !important; }
+.btn-outline-primary { color: var(--color-primary) !important; border-color: var(--color-primary) !important; }
+.btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active,
+.btn-check:checked + .btn-outline-primary,
+.btn-check:active + .btn-outline-primary {
+  background: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+.btn-check:focus + .btn-outline-primary,
+.form-control:focus, .form-select:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 0.2rem rgba(85, 122, 89, 0.25) !important;
+}
+.text-primary { color: var(--color-primary) !important; }
+
+/* Mobile */
+@media (max-width: 767.98px) {
+  #sidebar { position: fixed; top: 0; left: -220px; height: 100vh; z-index: 1000; transition: left 0.3s; }
+  #sidebar.active { left: 0; }
+  #content { margin-left: 0; }
+  .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.4); z-index: 998; display: none; }
+  .sidebar-overlay.active { display: block; }
+}
